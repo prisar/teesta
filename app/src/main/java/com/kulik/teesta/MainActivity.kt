@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    Home()
                 }
             }
         }
@@ -33,7 +33,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String) {
+fun Home() {
     Column(horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceBetween) {
         Text("Teesta app for north bengal")
@@ -46,6 +46,6 @@ fun Greeting(name: String) {
 @Composable
 fun DefaultPreview() {
     TeestaTheme {
-        Greeting("Android")
+        Home()
     }
 }
