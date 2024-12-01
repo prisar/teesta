@@ -5,15 +5,18 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.kulik.teesta.ui.theme.TeestaTheme
 
 class MainActivity : ComponentActivity() {
@@ -21,13 +24,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             TeestaTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+                // Setup navigation
+                val navController = rememberNavController()
+                NavHost(
+                    navController = navController,
+                    startDestination = "home"
                 ) {
-//                    Home()
-                    BoardingPassScreen()
+                    composable("home") { Home(navController) }
+                    composable("boarding_pass") { BoardingPassScreen() }
                 }
             }
         }
@@ -35,20 +39,44 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Home() {
-    Column(horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceBetween) {
-        Text("Teesta app for north bengal")
+fun Home(navController: NavHostController) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.SpaceBetween,
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
+        Text(
+            text = "Teesta app for north Bengal",
+            style = MaterialTheme.typography.h5,
+            modifier = Modifier.padding(top = 16.dp)
+        )
 
         Image(
             painter = painterResource(id = R.drawable.dalimgaon),
-            contentDescription = "train",
+            contentDescription = "Train",
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(10.dp)
         )
 
-        Text("Wiki for outsiders")
+        Text(
+            text = "Wiki for outsiders",
+            style = MaterialTheme.typography.body1
+        )
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        Button(
+            onClick = { navController.navigate("boarding_pass") },
+            shape = RoundedCornerShape(8.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp)
+        ) {
+            Text("Open Boarding Pass")
+        }
     }
 }
 
@@ -56,6 +84,7 @@ fun Home() {
 @Composable
 fun DefaultPreview() {
     TeestaTheme {
-        Home()
+        val navController = rememberNavController()
+        Home(navController)
     }
 }
