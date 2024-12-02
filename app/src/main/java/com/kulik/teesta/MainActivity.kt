@@ -34,6 +34,7 @@ class MainActivity : ComponentActivity() {
                     composable("boarding_pass") { BoardingPassScreen() }
                     composable("expense_calculator") { ExpenseCalculatorScreen() }
                     composable("travel") { TravelScreen() }
+                    composable("step_tracker") { StepTrackerScreen() }
                 }
             }
         }
@@ -98,6 +99,16 @@ fun Home(navController: NavHostController) {
                 .padding(horizontal = 16.dp)
         ) {
             Text("Travel")
+        }
+
+        Button(
+            onClick = { navController.navigate("step_tracker") },
+            shape = RoundedCornerShape(8.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp)
+        ) {
+            Text("Step Tracker")
         }
     }
 }
