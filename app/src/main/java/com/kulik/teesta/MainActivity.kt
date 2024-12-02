@@ -32,6 +32,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     composable("home") { Home(navController) }
                     composable("boarding_pass") { BoardingPassScreen() }
+                    composable("expense_calculator") { ExpenseCalculatorScreen() }
                 }
             }
         }
@@ -76,6 +77,16 @@ fun Home(navController: NavHostController) {
                 .padding(horizontal = 16.dp)
         ) {
             Text("Open Boarding Pass")
+        }
+
+        Button(
+            onClick = { navController.navigate("expense_calculator") },
+            shape = RoundedCornerShape(8.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp)
+        ) {
+            Text("Expense calculator")
         }
     }
 }
