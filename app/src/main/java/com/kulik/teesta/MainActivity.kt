@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
                     composable("expense_calculator") { ExpenseCalculatorScreen() }
                     composable("travel") { TravelScreen() }
                     composable("step_tracker") { StepTrackerScreen() }
-                    composable("sushi_details") { SushiDetailScreen() }
+                    composable("sushi_details") { RestaurantScreen() }
                 }
             }
         }
