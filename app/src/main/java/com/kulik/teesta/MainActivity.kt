@@ -36,6 +36,7 @@ class MainActivity : ComponentActivity() {
                     composable("travel") { TravelScreen() }
                     composable("step_tracker") { StepTrackerScreen() }
                     composable("sushi_details") { RestaurantScreen() }
+                    composable("shirt_details") { ShirtDetailsScreen() }
                 }
             }
         }
@@ -120,6 +121,16 @@ fun Home(navController: NavHostController) {
                 .padding(horizontal = 16.dp)
         ) {
             Text("Sushi Details")
+        }
+
+        Button(
+            onClick = { navController.navigate("shirt_details") },
+            shape = RoundedCornerShape(8.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp)
+        ) {
+            Text("Shirt Details")
         }
     }
 }
